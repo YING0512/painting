@@ -29,7 +29,7 @@ namespace painting
         {
             var targetRadioBottom = sender as RadioButton;
             shapeType = targetRadioBottom.Tag.ToString();
-        }
+        }     
 
         private void strokeThicknessSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
@@ -39,7 +39,7 @@ namespace painting
         private void DisplayStatus()
         {
             int lineCount = myCanvas.Children.OfType<Line>().Count();
-            int rectCount = myCanvas.Children.OfType<Rect>().Count();
+            int rectCount = myCanvas.Children.OfType<Rectangle>().Count();
             int ellipseCount = myCanvas.Children.OfType<Ellipse>().Count();
             coordinateLabel.Content = $"座標點:({Math.Round(start.X)},{Math.Round(start.Y)}) : {Math.Round(dest.X)},{Math.Round(dest.Y)})";
             shapeLabel.Content = $"Line:{lineCount},Rectangle:{rectCount},Ellipse:{ellipseCount}";
@@ -90,7 +90,7 @@ namespace painting
                     rect.SetValue(Canvas.LeftProperty, start.X);
                     rect.SetValue(Canvas.TopProperty, start.Y); 
                     break;
-                case "Ellipse":
+                case "Ellispse":
                     var ellipse = new Ellipse
                     {
                         Stroke = Brushes.Gray,
@@ -130,14 +130,14 @@ namespace painting
                         rect.Width = width;
                         rect.Height = height;
                         rect.SetValue(Canvas.LeftProperty, origin.X);
-                        rect.SetValue(Canvas.LeftProperty, origin.Y);
+                        rect.SetValue(Canvas.TopProperty, origin.Y);
                         break;
-                    case "Ellipse":
+                    case "Ellispse":
                         var ellipse = myCanvas.Children.OfType<Ellipse>().LastOrDefault();
                         ellipse.Width = width;
                         ellipse.Height = height;
                         ellipse.SetValue(Canvas.LeftProperty, origin.X);
-                        ellipse.SetValue(Canvas.LeftProperty, origin.Y);
+                        ellipse.SetValue(Canvas.TopProperty, origin.Y);
                         break;
                 }
             }
@@ -158,7 +158,7 @@ namespace painting
                     rect.Fill = new SolidColorBrush(fillColor);
                     rect.StrokeThickness = strokeThickness;
                     break;
-                case "Ellipse":
+                case "Ellispses":
                     var ellipse = myCanvas.Children.OfType<Ellipse>().LastOrDefault();
                     ellipse.Stroke = new SolidColorBrush(strokeColor);
                     ellipse.Fill = new SolidColorBrush(fillColor);
