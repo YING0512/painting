@@ -23,7 +23,6 @@ namespace painting
         public MainWindow()
         {
             InitializeComponent();
-            strokeColorPicker.SelectedColor = strokeColor;
         }
 
         private void ShapeBotton_Click(object sender, RoutedEventArgs e)
