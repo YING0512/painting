@@ -13,14 +13,16 @@
             <MenuItem Header="檔案" VerticalAlignment="Center">
                 <MenuItem Header="新畫布"/>
             </MenuItem>
-            <MenuItem Header="工具"/>
+            <MenuItem Header="工具">
+                <MenuItem Header="清除畫布" x:Name="clearMenuItem" Click="clearMenuItem_Click" />
+            </MenuItem>
         </Menu>
         <ToolBarTray DockPanel.Dock="Top" Height="40" Background="#FFFFFDCB">
             <ToolBar HorizontalAlignment="Center" Height="36" VerticalAlignment="Center" Width="500" Background="#FFD8EAFF">
                 <Label Content="筆刷色彩" Width="80" VerticalAlignment="Center" FontSize="16"/>
                 <xctk:ColorPicker x:Name="strokeColorPicker" Width="80" DisplayColorAndName="True" SelectedColorChanged="strokeColorPicker_SelectedColorChanged"/>
                 <Label Content="填滿色彩" Width="80" VerticalAlignment="Center" FontSize="16"/>
-                <xctk:ColorPicker x:Name="fillColorPicker" Width="80" DisplayColorAndName="True" SelectedColorChanged="strokeColorPicker_SelectedColorChanged"/>
+                <xctk:ColorPicker x:Name="fillColorPicker" Width="80" DisplayColorAndName="True" SelectedColorChanged="fillColorPicker_SelectedColorChanged"/>
                 <Slider x:Name="strokeThicknessSlider" Value="1" Minimum="1" Maximum="10" Width="100" VerticalAlignment="Center" IsSnapToTickEnabled="True" ValueChanged="strokeThicknessSlider_ValueChanged"/>
                 <Label Content="{Binding Value, ElementName=strokeThicknessSlider}" Width="50" FontWeight="Bold" HorizontalContentAlignment="Center" HorizontalAlignment="Center"/>
             </ToolBar>
