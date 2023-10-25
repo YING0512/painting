@@ -4,9 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:painting"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+        Title="Printer" Height="450" Width="800">
+    
+    <DockPanel LastChildFill="False">
+        <Menu Height="25" DockPanel.Dock="Top">
+            <MenuItem Header="檔案" VerticalAlignment="Center">
+                <MenuItem Header="新畫布"/>
+            </MenuItem>
+            <MenuItem Header="工具"/>
+        </Menu>
+        <ToolBarTray DockPanel.Dock="Top" Height="50" Background="#FFE9FFDF">
+            <ToolBar HorizontalAlignment="Center" Height="48" VerticalAlignment="Center" Width="300" Background="#FFC4DFFF">
+                <Label Content="筆刷色彩" Width="80" VerticalAlignment="Center" FontSize="16"/>
+                <xctk:ColorPicker Width="100"/>
+            </ToolBar>
+        </ToolBarTray>
+    </DockPanel>
 </Window>
