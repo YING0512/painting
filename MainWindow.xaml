@@ -15,11 +15,20 @@
             </MenuItem>
             <MenuItem Header="工具"/>
         </Menu>
-        <ToolBarTray DockPanel.Dock="Top" Height="50" Background="#FFE9FFDF">
-            <ToolBar HorizontalAlignment="Center" Height="48" VerticalAlignment="Center" Width="300" Background="#FFC4DFFF">
+        <ToolBarTray DockPanel.Dock="Top" Height="40" Background="#FFFFFDCB">
+            <ToolBar HorizontalAlignment="Center" Height="36" VerticalAlignment="Center" Width="450" Background="#FFD8EAFF">
                 <Label Content="筆刷色彩" Width="80" VerticalAlignment="Center" FontSize="16"/>
-                <xctk:ColorPicker Width="100"/>
+                <xctk:ColorPicker x:Name="strokeColorPicker" Width="150" DisplayColorAndName="True"/>
+                <Slider x:Name="strokeThicknessSlider" Value="1" Minimum="1" Maximum="10" Width="100" VerticalAlignment="Center" IsSnapToTickEnabled="True" ValueChanged="strokeThicknessSlider_ValueChanged"/>
+                <Label Content="{Binding Value, ElementName=strokeThicknessSlider}" Width="50" FontWeight="Bold" HorizontalContentAlignment="Center" HorizontalAlignment="Center"/>
+            </ToolBar>
+            <ToolBar Width="300" Background="#FFBDCEFF" >
+                <RadioButton Content="直線" FontSize="14" Width="60" VerticalAlignment="Center" Tag="Line" Click="ShapeBotton_Click" IsChecked="True" />
+                <RadioButton Content="矩形" FontSize="14" Width="60" VerticalAlignment="Center" Tag="Rectangle" Click="ShapeBotton_Click" />
+                <RadioButton Content="橢圓" FontSize="14" Width="60" VerticalAlignment="Center" Tag="Ellispse" Click="ShapeBotton_Click" />
             </ToolBar>
         </ToolBarTray>
+        <Canvas x:Name="myCanvas" Height="320" Background="#FFFFFDCB" DockPanel.Dock="Top" MouseLeftButtonDown="myCanvas_MouseLeftButtonDown"/>
+        <StatusBar x:Name="myStusBer" Width="950" DockPanel.Dock="Bottom" Background="#FF9A9A9A" Height="30"/>
     </DockPanel>
 </Window>
