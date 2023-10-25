@@ -16,9 +16,11 @@
             <MenuItem Header="工具"/>
         </Menu>
         <ToolBarTray DockPanel.Dock="Top" Height="40" Background="#FFFFFDCB">
-            <ToolBar HorizontalAlignment="Center" Height="36" VerticalAlignment="Center" Width="450" Background="#FFD8EAFF">
+            <ToolBar HorizontalAlignment="Center" Height="36" VerticalAlignment="Center" Width="500" Background="#FFD8EAFF">
                 <Label Content="筆刷色彩" Width="80" VerticalAlignment="Center" FontSize="16"/>
-                <xctk:ColorPicker x:Name="strokeColorPicker" Width="150" DisplayColorAndName="True"/>
+                <xctk:ColorPicker x:Name="strokeColorPicker" Width="80" DisplayColorAndName="True" SelectedColorChanged="strokeColorPicker_SelectedColorChanged"/>
+                <Label Content="填滿色彩" Width="80" VerticalAlignment="Center" FontSize="16"/>
+                <xctk:ColorPicker x:Name="fillColorPicker" Width="80" DisplayColorAndName="True" SelectedColorChanged="strokeColorPicker_SelectedColorChanged"/>
                 <Slider x:Name="strokeThicknessSlider" Value="1" Minimum="1" Maximum="10" Width="100" VerticalAlignment="Center" IsSnapToTickEnabled="True" ValueChanged="strokeThicknessSlider_ValueChanged"/>
                 <Label Content="{Binding Value, ElementName=strokeThicknessSlider}" Width="50" FontWeight="Bold" HorizontalContentAlignment="Center" HorizontalAlignment="Center"/>
             </ToolBar>
@@ -28,7 +30,12 @@
                 <RadioButton Content="橢圓" FontSize="14" Width="60" VerticalAlignment="Center" Tag="Ellispse" Click="ShapeBotton_Click" />
             </ToolBar>
         </ToolBarTray>
-        <Canvas x:Name="myCanvas" Height="320" Background="#FFFFFDCB" DockPanel.Dock="Top" MouseLeftButtonDown="myCanvas_MouseLeftButtonDown"/>
-        <StatusBar x:Name="myStusBer" Width="950" DockPanel.Dock="Bottom" Background="#FF9A9A9A" Height="30"/>
+        <Canvas x:Name="myCanvas" Height="320" Background="#FFFFFDCB" DockPanel.Dock="Top" MouseLeftButtonDown="myCanvas_MouseLeftButtonDown" MouseMove="myCanvas_MouseMove" MouseLeftButtonUp="myCanvas_MouseLeftButtonUp"/>
+        <StatusBar x:Name="myStusBer" DockPanel.Dock="Bottom" Background="#FF9A9A9A" Height="30">
+            <StackPanel Orientation="Horizontal" Margin="50,0,0,0">
+                <Label x:Name="coordinateLabel" Content="座標點" Width="300" Height="30" VerticalAlignment="Center"/>
+                <Label x:Name="shapeLabel" Width="300" Height="30" VerticalAlignment="Center"/>
+            </StackPanel>
+        </StatusBar>
     </DockPanel>
 </Window>

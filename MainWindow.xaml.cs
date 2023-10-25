@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace painting
@@ -20,10 +13,10 @@ namespace painting
     /// </summary>
     public partial class MainWindow : Window
     {
-        string shapeType;
+        string shapeType = "Line";
         Color strokeColor = Colors.Red;
-        Brush strokeBrush = new SolidColorBrush(Colors.Red);
-        int strokeThickness;
+        Color fillColor = Colors.Yellow;
+        int strokeThickness = 1;
 
         Point start, dest;
         public MainWindow()
@@ -50,6 +43,77 @@ namespace painting
             switch(shapeType)
             {
                 case "Line":
+                    Line line = new Line
+                    {
+                        Stroke = Brushes.Gray,
+                        StrokeThickness = 1,
+                        X1 = start.X,
+                        Y1 = start.Y,
+                        X2 = dest.X,
+                        Y2 = dest.Y
+                    };
+                    myCanvas.Children.Add(line);
+                    break;
+                case "Rectangle":
+                    var rect = new Rectangle
+                    {
+                        Stroke = Brushes.Gray,
+                        StrokeThickness = 1,
+                        Fill = Brushes.LightGray,
+                    };
+                    myCanvas.Children.Add(rect);
+                    rect.SetValue(Canvas.LeftProperty, start.X);
+                    rect.SetValue(Canvas.TopProperty, start.Y); 
+                    break;
+                case "Ellipse":
+                    break;
+            }
+            DisplayStatus();
+        }
+
+        private void DisplayStatus()
+        {
+            int lineCount = myCanvas.Children.OfType<Line>().Count();
+            int rectCount = myCanvas.Children.OfType<Rect>().Count();
+            coordinateLabel.Content = $"座標點:({Math.Round(start.X)},{Math.Round(start.Y)}) : {Math.Round(dest.X)},{Math.Round(dest.Y)})";
+            shapeLabel.Content=$"Line:{lineCount},Rectangle:{rectCount}";
+        }
+
+        private void myCanvas_MouseMove(object sender, MouseEventArgs e)
+        {
+            dest = e.GetPosition(myCanvas);
+            DisplayStatus();
+
+            if(e.LeftButton == MouseButtonState.Pressed)
+            {
+                switch (shapeType)
+                {
+                    case "Line":  
+                        var line = myCanvas.Children.OfType<Line>().LastOrDefault();
+                        line.X2 =dest.X; 
+                        line.Y2 =dest.Y;
+                        break;
+                    case "Rectangle":
+                        break;
+                    case "Ellipse":
+                        break;
+                }
+            }
+        }
+
+        private void strokeColorPicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
+        {
+            strokeColor = (Color)strokeColorPicker.SelectedColor;
+        }
+
+        private void myCanvas_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            switch (shapeType)
+            {
+                case "Line":
+                    var line = myCanvas.Children.OfType<Line>().LastOrDefault();
+                    line.Stroke = new SolidColorBrush(strokeColor);
+                    line.StrokeThickness = strokeThickness;
                     break;
                 case "Rectangle":
                     break;
