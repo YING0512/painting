@@ -36,6 +36,8 @@ namespace painting
             strokeThickness = Convert.ToInt32(strokeThicknessSlider.Value);
         }
 
+
+
         private void DisplayStatus()
         {
             int lineCount = myCanvas.Children.OfType<Line>().Count();
@@ -158,7 +160,7 @@ namespace painting
                     rect.Fill = new SolidColorBrush(fillColor);
                     rect.StrokeThickness = strokeThickness;
                     break;
-                case "Ellispses":
+                case "Ellispse":
                     var ellipse = myCanvas.Children.OfType<Ellipse>().LastOrDefault();
                     ellipse.Stroke = new SolidColorBrush(strokeColor);
                     ellipse.Fill = new SolidColorBrush(fillColor);
