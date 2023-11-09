@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:painting"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="Printer" Height="450" Width="800">
+        Title="Printer" Height="450" Width="930">
     
     <DockPanel LastChildFill="False">
         <Menu Height="25" DockPanel.Dock="Top">
@@ -26,10 +26,27 @@
                 <Slider x:Name="strokeThicknessSlider" Value="1" Minimum="1" Maximum="10" Width="100" VerticalAlignment="Center" IsSnapToTickEnabled="True" ValueChanged="strokeThicknessSlider_ValueChanged"/>
                 <Label Content="{Binding Value, ElementName=strokeThicknessSlider}" Width="50" FontWeight="Bold" HorizontalContentAlignment="Center" HorizontalAlignment="Center"/>
             </ToolBar>
-            <ToolBar Width="300" Background="#FFBDCEFF" >
-                <RadioButton Content="直線" FontSize="14" Width="60" VerticalAlignment="Center" Tag="Line" Click="ShapeBotton_Click" IsChecked="True" />
-                <RadioButton Content="矩形" FontSize="14" Width="60" VerticalAlignment="Center" Tag="Rectangle" Click="ShapeBotton_Click" />
-                <RadioButton Content="橢圓" FontSize="14" Width="60" VerticalAlignment="Center" Tag="Ellispse" Click="ShapeBotton_Click" />
+            <ToolBar Width="250" Background="#FFD8EAFF" >
+                <RadioButton FontSize="14" Width="50" VerticalAlignment="Center" Tag="Line" Click="ShapeBotton_Click" IsChecked="True" >
+                    <Image Height="30" Width="50" Source="/line.png" />
+                </RadioButton>
+                <RadioButton FontSize="14" Width="50" VerticalAlignment="Center" Tag="Rectangle" Click="ShapeBotton_Click" >
+                    <Image Height="30" Width="50" Source="/rectangular.png" />
+                </RadioButton>
+                <RadioButton FontSize="14" Width="50" VerticalAlignment="Center" Tag="Ellispse" Click="ShapeBotton_Click" >
+                    <Image Height="30" Width="50" Source="/ellipse.png" />
+                </RadioButton>
+                <RadioButton FontSize="14" Width="50" VerticalAlignment="Center" Tag="Polyline" Click="ShapeBotton_Click" >
+                    <Image Height="30" Width="50" Source="/polyline.png" />
+                </RadioButton>
+            </ToolBar>
+            <ToolBar Width="150" Background="#FFD8EAFF">
+                <Button FontSize="14" Width="50" VerticalAlignment="Center" Click="eraserButton_Click" >
+                    <Image x:Name="eraserButton" Height="30" Width="50" Source="/eraser.png" />
+                </Button>
+                <Button FontSize="14" Width="50" VerticalAlignment="Center" Click="clearMenuItem_Click" >
+                    <Image x:Name="clearButton" Height="30" Width="50" Source="/trashcan.png" />
+                </Button>
             </ToolBar>
         </ToolBarTray>
         <Canvas x:Name="myCanvas" Height="320" Background="#FFFFFDCB" DockPanel.Dock="Top" MouseLeftButtonDown="myCanvas_MouseLeftButtonDown" MouseMove="myCanvas_MouseMove" MouseLeftButtonUp="myCanvas_MouseLeftButtonUp"/>

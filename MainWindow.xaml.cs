@@ -43,8 +43,9 @@ namespace painting
             int lineCount = myCanvas.Children.OfType<Line>().Count();
             int rectCount = myCanvas.Children.OfType<Rectangle>().Count();
             int ellipseCount = myCanvas.Children.OfType<Ellipse>().Count();
+            int polyline = myCanvas.Children.OfType<Polyline>().Count();
             coordinateLabel.Content = $"座標點:({Math.Round(start.X)},{Math.Round(start.Y)}) : {Math.Round(dest.X)},{Math.Round(dest.Y)})";
-            shapeLabel.Content = $"Line:{lineCount},Rectangle:{rectCount},Ellipse:{ellipseCount}";
+            shapeLabel.Content = $"Line:{lineCount},Rectangle:{rectCount},Ellipse:{ellipseCount},Polyline:{polyline}";
         }
 
         private void strokeColorPicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
@@ -103,6 +104,15 @@ namespace painting
                     ellipse.SetValue(Canvas.LeftProperty, start.X);
                     ellipse.SetValue(Canvas.TopProperty, start.Y);
                     break;
+                case "Polyline":
+                    var polyline = new Polyline
+                    {
+                        Stroke = Brushes.Gray,
+                        StrokeThickness = 1,
+                        Fill = Brushes.LightGray,
+                    };
+                    myCanvas.Children.Add(polyline);
+                    break;
             }
             DisplayStatus();
         }
@@ -141,8 +151,17 @@ namespace painting
                         ellipse.SetValue(Canvas.LeftProperty, origin.X);
                         ellipse.SetValue(Canvas.TopProperty, origin.Y);
                         break;
+                    case "Polyline":
+                        var polyline = myCanvas.Children.OfType<Polyline>().LastOrDefault();
+                        polyline.Points.Add(dest);
+                        break;
                 }
             }
+        }
+
+        private void eraserButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void myCanvas_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -165,6 +184,12 @@ namespace painting
                     ellipse.Stroke = new SolidColorBrush(strokeColor);
                     ellipse.Fill = new SolidColorBrush(fillColor);
                     ellipse.StrokeThickness = strokeThickness;
+                    break;
+                case "Polyline":
+                    var polyline = myCanvas.Children.OfType<Polyline>().LastOrDefault();
+                    polyline.Stroke = new SolidColorBrush(strokeColor);
+                    polyline.Fill = new SolidColorBrush(fillColor);
+                    polyline.StrokeThickness = strokeThickness;
                     break;
             }
             myCanvas.Cursor = Cursors.Arrow;
