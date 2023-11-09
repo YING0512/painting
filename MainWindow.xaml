@@ -26,7 +26,7 @@
                 <Slider x:Name="strokeThicknessSlider" Value="1" Minimum="1" Maximum="10" Width="100" VerticalAlignment="Center" IsSnapToTickEnabled="True" ValueChanged="strokeThicknessSlider_ValueChanged"/>
                 <Label Content="{Binding Value, ElementName=strokeThicknessSlider}" Width="50" FontWeight="Bold" HorizontalContentAlignment="Center" HorizontalAlignment="Center"/>
             </ToolBar>
-            <ToolBar Width="250" Background="#FFD8EAFF" >
+            <ToolBar Width="230" Background="#FFD8EAFF" >
                 <RadioButton FontSize="14" Width="50" VerticalAlignment="Center" Tag="Line" Click="ShapeBotton_Click" IsChecked="True" >
                     <Image Height="30" Width="50" Source="/line.png" />
                 </RadioButton>
@@ -40,7 +40,7 @@
                     <Image Height="30" Width="50" Source="/polyline.png" />
                 </RadioButton>
             </ToolBar>
-            <ToolBar Width="150" Background="#FFD8EAFF">
+            <ToolBar Width="130" Background="#FFD8EAFF">
                 <Button FontSize="14" Width="50" VerticalAlignment="Center" Click="eraserButton_Click" >
                     <Image x:Name="eraserButton" Height="30" Width="50" Source="/eraser.png" />
                 </Button>
